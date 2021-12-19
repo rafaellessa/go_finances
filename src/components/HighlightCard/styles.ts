@@ -1,16 +1,23 @@
-import styled from "styled-components/native";
-import { Feather } from "@expo/vector-icons";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
+import styled, { css } from "styled-components/native";
+import Icon, { IconItem } from "../Icon";
 
-export const Container = styled.View`
-  padding: ${RFValue(24)}px;
-  background-color: ${({ theme }) => theme.colors.shape};
+interface TransactionTypeProps {
+  type: "up" | "down" | "total";
+}
+
+interface IconProps extends IconItem {
+  type: "up" | "down" | "total";
+}
+
+export const Container = styled.View<TransactionTypeProps>`
+  background-color: ${({ theme, type }) =>
+    type === "total" ? theme.colors.secondary : theme.colors.shape};
   width: ${RFValue(300)}px;
-  height: ${RFValue(200)}px;
-  position: absolute;
-  top: ${RFPercentage(20)}px;
-  justify-content: space-between;
-  border-radius: 10px;
+  border-radius: 5px;
+  padding: 19px 23px;
+  padding-bottom: ${RFValue(42)}px;
+  margin-right: 16px;
 `;
 
 export const Header = styled.View`
@@ -18,28 +25,49 @@ export const Header = styled.View`
   justify-content: space-between;
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text<TransactionTypeProps>`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;
-  line-height: ${RFValue(21)}px;
-  color: ${({ theme }) => theme.colors.title};
+  color: ${({ theme, type }) =>
+    type === "total" ? theme.colors.shape : theme.colors.text_dark};
 `;
 
-export const Icon = styled(Feather)`
+export const SampleIcon = styled(Icon).attrs(({ name, source }: IconProps) => ({
+  name,
+  source,
+}))<IconProps>`
   font-size: ${RFValue(40)}px;
-  color: ${({ theme }) => theme.colors.success};
+  ${({ type }) =>
+    type === "up" &&
+    css`
+      color: ${({ theme }) => theme.colors.success};
+    `}
+  ${({ type }) =>
+    type === "down" &&
+    css`
+      color: ${({ theme }) => theme.colors.attention};
+    `}
+
+    ${({ type }) =>
+    type === "total" &&
+    css`
+      color: ${({ theme }) => theme.colors.shape};
+    `}
 `;
 
-export const FooterWrapper = styled.View``;
+export const Footer = styled.View``;
 
-export const Amount = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.medium};
+export const Amount = styled.Text<TransactionTypeProps>`
   font-size: ${RFValue(32)}px;
-  color: ${({ theme }) => theme.colors.title};
+  font-family: ${({ theme }) => theme.fonts.medium};
+  color: ${({ theme, type }) =>
+    type === "total" ? theme.colors.shape : theme.colors.text_dark};
+  margin-top: 38px;
 `;
 
-export const LastTransaction = styled.Text`
+export const LastTransaction = styled.Text<TransactionTypeProps>`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(12)}px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme, type }) =>
+    type === "total" ? theme.colors.shape : theme.colors.text_dark};
 `;

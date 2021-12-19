@@ -1,0 +1,13 @@
+export {default as AntDesign} from '@expo/vector-icons/AntDesign';
+export {default as Entypo} from '@expo/vector-icons/Entypo';
+export {default as EvilIcons} from '@expo/vector-icons/EvilIcons';
+export {default as Feather} from '@expo/vector-icons/Feather';
+export {default as FontAwesome} from '@expo/vector-icons/FontAwesome';
+export {default as Fontisto} from '@expo/vector-icons/Fontisto';
+export {default as Foundation} from '@expo/vector-icons/Foundation';
+export {default as Ionicons} from '@expo/vector-icons/Ionicons';
+export {default as MaterialIcons} from '@expo/vector-icons/MaterialIcons';
+export {default as MaterialCommunityIcons} from '@expo/vector-icons/MaterialCommunityIcons';
+export {default as Octicons} from '@expo/vector-icons/Octicons';
+export {default as Zocial} from '@expo/vector-icons/Zocial';
+export {default as SimpleLineIcons} from '@expo/vector-icons/SimpleLineIcons';

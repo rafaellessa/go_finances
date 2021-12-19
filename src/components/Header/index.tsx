@@ -1,31 +1,40 @@
 import React from "react";
-import Avatar from "../Avatar/index";
+
 import {
-  PowerIcon,
-  UserGreeting,
-  UserInfoWrapper,
-  UserWrapper,
+  Container,
+  User,
+  Photo,
   UserName,
-  AvatarWrapper,
-  UserGreetingWrapper,
-  PowerIconWrapper,
+  UserGreeting,
+  UserWrapper,
+  UserInfo,
+  IconSignOut,
+  IconWrapper,
+  ContentWrapper,
 } from "./styles";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onPress: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onPress }) => {
   return (
-    <UserWrapper>
-      <UserInfoWrapper>
-        <Avatar uriPhoto="https://github.com/rafaellessa.png" />
-        <AvatarWrapper />
-        <UserGreetingWrapper>
-          <UserGreeting>Olá, </UserGreeting>
-          <UserName>Rafael</UserName>
-        </UserGreetingWrapper>
-      </UserInfoWrapper>
-      <PowerIconWrapper>
-        <PowerIcon name="power" />
-      </PowerIconWrapper>
-    </UserWrapper>
+    <Container>
+      <ContentWrapper>
+        <UserInfo>
+          <User>
+            <Photo source={{ uri: "https://github.com/rafaellessa.png" }} />
+            <UserWrapper>
+              <UserGreeting>Olá</UserGreeting>
+              <UserName>Rafael Lessa</UserName>
+            </UserWrapper>
+          </User>
+        </UserInfo>
+        <IconWrapper onPress={onPress}>
+          <IconSignOut />
+        </IconWrapper>
+      </ContentWrapper>
+    </Container>
   );
 };
 

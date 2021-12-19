@@ -1,17 +1,36 @@
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { RFPercentage } from "react-native-responsive-fontsize";
+import { FlatList } from "react-native";
+import { getBottomSpace } from "react-native-iphone-x-helper";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
+  flex: 1;
 `;
 
-export const HeaderWrapper = styled.View`
+export const HighLightCards = styled.ScrollView.attrs({
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+  contentContainerStyle: { paddingHorizontal: 24 },
+})`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.primary};
-  padding-top: ${getStatusBarHeight() + 24}px;
-  padding-left: 24px;
-  padding-right: 24px;
-  height: ${RFPercentage(42)}px;
+  position: absolute;
+  margin-top: ${RFPercentage(20)}px;
 `;
+
+export const Transactions = styled.View`
+  flex: 1;
+  padding: 0 24px;
+  margin-top: ${RFPercentage(8)}px;
+`;
+
+export const Title = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(18)}px;
+  margin-bottom: 16px;
+`;
+
+export const TransactionsList = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+  paddingBottom: getBottomSpace(),
+})`` as unknown as typeof FlatList;
